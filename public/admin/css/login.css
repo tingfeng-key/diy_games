@@ -1,0 +1,10 @@
+.loginBody {
+    background-image: url(../img/bg_login.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 610px;
+}
+.form-body {
+    margin-top: 30%;
+    color: #fff;
+}

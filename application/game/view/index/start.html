@@ -1,0 +1,89 @@
+{extend name="Common:layout" /}
+{block name="title"}{$data.share_text}{/block}
+{block name="css"}
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="full-screen" content="no" />
+{/block}
+{block name="body"}
+{include {__GAMES__}.'../games/'.$data['tpl_path']{/php}
+{/block}
+{block name="footJs"}
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="__JS__/amazeui-grid.min.js"></script>
+<script src="__JS__/../layui.js"></script>
+<script type='application/javascript' src='__JS__/fastclick.js'></script>
+<script>
+
+    var dataId = {:Request()->param('id')};
+    $(function() {
+        FastClick.attach(document.body);
+    });
+    {if condition="userAgent()"}
+    var urls = location.href.split('#')[0];
+    $.ajax({
+        url: '{:Url("getJsapiTicket")}',
+        type: 'post',
+        dataType: 'json',
+        data: { data: urls}
+    })
+    .done(function(res) {
+        if(res.code){
+            //alert(urls);
+            weixinInit(res.data);
+        }
+    });
+    function weixinInit(data){
+        wx.config({
+            debug: false,
+            appId: 'wxd0aa86719fd88894',
+            timestamp: data.timestamp,
+            nonceStr: data.noncestr,
+            signature: data.signature,
+            jsApiList: [
+                //'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'showMenuItems',
+                'hideMenuItems'
+            ]
+        });
+    }
+    wx.ready(function(){
+        //wx.hideOptionMenu();
+        wx.hideMenuItems({
+            menuList: [
+                "menuItem:share:timeline",
+                "menuItem:editTag",
+                "menuItem:readMode"
+            ]
+        });
+        wx.checkJsApi({
+            jsApiList: [
+                'getNetworkType',
+                'previewImage',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo'
+            ],
+            success: function (res) {
+                //alert(JSON.stringify(res));
+            }
+        });
+       wx.onMenuShareAppMessage({
+            title: '{$data->name}',
+            desc: '{$data->share_text}',
+            link: urls,
+            imgUrl: 'http://www.fz222.com__ROOT__{:empty($data->logo)?$data->g_logo:$data->logo}', // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+    wx.error(function(res){
+    });
+    {/if}
+</script>
+{/block}
+

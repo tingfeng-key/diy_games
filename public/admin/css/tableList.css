@@ -1,0 +1,34 @@
+.tableListId {
+    max-height: 442px;
+}
+.nav {
+    height: 44px;
+    line-height: 44px;
+    border: 1px solid #e0e0e0;
+}
+.nav .left {
+
+display: inline-block;
+}
+
+.nav .right {
+
+float: right;
+}
+.nav .layui-form-item {
+    display: inline-block;
+    /* padding: 0px; */
+}
+.nav .layui-input-block {
+    
+margin-left: 0px;
+}
+.pages {
+
+}
+.pages .left{
+
+}
+.pages .right {
+    float:right;
+}

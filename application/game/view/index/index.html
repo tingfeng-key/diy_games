@@ -1,0 +1,98 @@
+{extend name="Common:layout" /}
+{block name="title"}游戏列表{/block}
+{block name="css"}
+    <link rel="stylesheet" href="__CSS__/amazeui-grid-utility.min.css" />
+    <link rel="stylesheet" href="__CSS__/gameList.css" />
+    <link rel="stylesheet" href="__CSS__/swiper.min.css" />
+{/block}
+{block name="body"}
+<section class="container">
+    <section class="am-g mgud">
+        <section class="am-u-sm-11 searchInputClass">
+            <input type="text" class="searchInput" />
+        </section>
+        <section class="am-u-sm-1 searchButton">
+            <button class="submitBtn">
+                <img src="/img_m/madl_sshbtn.jpg" />
+            </button>
+        </section>
+    </section>
+    <section class="am-g mgud">
+        <section class="am-u-sm-12">
+            <section class="swiper-container">
+                <section class="swiper-wrapper">
+                    {volist name="typeData" id="item"}
+                    <section class="swiper-slide typeName" data-id="{$item.id}">{$item.name}</section>
+                    {/volist}
+                </section>
+            </section>
+        </section>
+        <hr style="border-top:1px solid #ff0000">
+    </section>
+    <section>
+        <ul class="am-padding-0 gameInfoList">
+            {volist name="data" id="item"}
+            <li class="lineHeight">
+                <section class="am-g">
+                    <section class="am-u-sm-7">
+                        <section class="am-g">
+                            <section class="am-u-sm-5 am-padding-right-0">
+                                <img class="gameLogo" src="__ROOT__{$item.logo}" />
+                            </section>
+                            <section class="am-u-sm-6 infoText">
+                                <section>{$item.name}</section>
+                                <section class="gameType">{$item.type_name}</section>
+                                <section class="hitNumber">人气：{$item.hit_number}</section>
+                            </section>
+                        </section>
+                    </section>
+                    <section class="am-u-sm-4" style="line-height: 3.5rem;">
+                        <section>
+                            <a class="btn testPlay" href="start/{$item.default}">试玩</a>
+                        </section>
+                        <section>
+                            <a class="btn make" href="buy/{$item.id}">￥{$item.price}<br />制作</a>
+                        </section>
+                    </section>
+                </section>
+            </li>
+            {/volist}
+        </ul>
+    </section>
+    {include file="Common:foot_nav"}
+</section>
+{/block}
+{block name="footJs"}
+<script type="text/plant" class="tpl tplList">
+<li>
+    <section class="am-g">
+        <section class="am-u-sm-8">
+            <section class="am-g">
+                <section class="am-u-sm-6 am-padding-right-0">
+                    <img class="gameLogo" src="__ROOT__{{logo}}" />
+                </section>
+                <section class="am-u-sm-6 infoText">
+                    <section>{{name}}</section>
+                    <section class="gameType">{{type}}</section>
+                    <section class="hitNumber">人气：{{hit_number}}</section>
+                </section>
+            </section>
+        </section>
+        <section class="am-u-sm-4">
+            <section>
+                <a class="btn testPlay" href="{:Url('start',['id'=>''],'')}/{{default_id}}">试玩</a>
+            </section>
+            <section>
+                <a class="btn make" href="{:Url('make',['id'=>''],'')}/{{id}}">制作</a>
+            </section>
+        </section>
+    </section>
+</li>
+</script>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+    var page = 0,nowUrl = "{:Request()->url(true)}";
+</script>
+<script src="__STATIC__/layer_mobile/layer.js"></script>
+<script src="__JS__/gameList.js"></script>
+{/block}

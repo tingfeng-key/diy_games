@@ -1,0 +1,70 @@
+{extend name="Common:layout" /}
+{block name="title"}欢迎您{/block}
+{block name="css"}
+<link rel="stylesheet" href="__CSS__/index.css">
+{/block}
+{block name="body"}
+<div class="wrap">
+    <header>
+        后台管理
+    </header>
+    <div class="left">
+        <ul>
+            {volist name="node" id="item"}
+                <li>
+                    {if condition="!isset($item->child)"}
+                        <a href="{$item->url}" class="node" target="url_content">
+                            <i class="{$item->icon}"></i>
+                            <span>{$item->name}</span>
+                        </a>
+                    {else /}
+                        <a href="javascript:void(0);" class="parent">
+                            <i class="am-icon-sm {$item->icon}"></i>
+                            <span>{$item->name}</span>
+                            <i class="am-icon-sm am-icon-chevron-up am-fr"></i>
+                        </a>
+                        <ul class="child">
+                            {volist name="item->child" id="item1"}
+                                <li>
+                                    <a href="{$item1->url}" class="node" target="url_content">
+                                        <i class="am-icon-sm {$item1->icon}"></i>
+                                        <span>{$item1->name}</span>
+                                    </a>
+                                </li>
+                            {/volist}
+                        </ul>
+                    {/if}
+                </li>
+            {/volist}
+        </ul>
+    </div>
+    <div class="right">
+        <div class="tabs">
+            <div class="tab pre am-fl">
+                <i class="layui-icon">&#xe68b;</i>
+            </div>
+            <div class="tab">
+                <span class="am-icon-close"></span>
+                <span class="tab_title">首页</span>
+            </div>
+            <div class="tab">
+                <i class="layui-icon">&#xe689;</i>
+            </div>
+        </div>
+        <div class="iframes">
+        </div>
+    </div>
+</div>
+{/block}
+{block name="footJs"}
+<script type="plant/html" id="tpl_tab">
+    <div class="tab" data-url="{name}">
+        <span class="tab_title">{title}</span>
+        <i class="layui-icon tab-close">&#xe639;</i>
+    </div>
+</script>
+<script type="plant/html" id="tpl_iframe">
+    <iframe src="{src}" class="iframe_display" data-name="{name}"></iframe>
+</script>
+<script src="__JS__/index.js"></script>
+{/block}

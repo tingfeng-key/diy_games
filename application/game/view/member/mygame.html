@@ -1,0 +1,55 @@
+{extend name="Common:layout" /}
+{block name="title"}我的游戏{/block}
+{block name="css"}
+<link rel="stylesheet" href="__CSS__/layui.css">
+<link rel="stylesheet" href="__CSS__/amazeui-grid-utility.min.css">
+<link rel="stylesheet" href="__CSS__/mygame.css">
+{/block}
+{block name="body"}
+<section class="container">
+{include file="Common/header_nav"}
+{if condition="count($data) eq 0"}
+    <section class="am-vertical-align empty_data" style="height:500px">
+        <section class="am-vertical-align-middle empty_text">
+            暂无定制游戏<a href="/diy_games/public/list">马上定制</a>
+        </section>
+    </section>
+{else /}
+    {volist name="data" id="item"}
+        <section class="am-g lineHeight">
+            <section class="am-u-sm-3">
+                <img class="gameLogo" src="__ROOT__{:empty($item['logo'])?$item['g_logo']:$item['logo']}">
+            </section>
+            <section class="am-u-sm-4 infoText">
+                <section>{$item.name}</section>
+                <section class="gameType">{$item.type_name}</section>
+                <section class="hitNumber">人气：{$item.hit_number}</section>
+            </section>
+            <section class="am-u-sm-3">
+                <section class="testPlay">
+                    <a href="start/{$item.id}">试玩</a>
+                </section>
+                <section class="edit">
+                    <a href="make/{$item.id}">编辑</a>
+                </section>
+            </section>
+            <section class="am-u-sm-2">
+                <section class="am-vertical-align" style="height: 6rem">
+                    <section class="am-vertical-align-middle">
+                        <img class="delete_game" data-id="{$item.id}" src="__IMG__/delete_game.png" />
+                    </section>
+                </section>
+            </section>
+        </section>
+    {/volist}
+{/if}
+{include file="Common/foot_nav"}
+</section>
+{/block}
+{block name="footJs"}
+<script>
+    var deleteGameUrl = '__ROOT__deleteMyGame';
+</script>
+<script src="__STATIC__/layer_mobile/layer.js"></script>
+<script src="__JS__/mygame.js"></script>
+{/block}

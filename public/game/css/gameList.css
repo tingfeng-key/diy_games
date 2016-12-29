@@ -1,0 +1,126 @@
+.lineHeight {
+    line-height: 2.6rem;
+}
+.gameLogo{
+    width: 7rem;
+}
+.infoText {
+    font-size: 1.5rem;
+    line-height: 2.4rem;
+}
+.hitNumber {
+    color: #e75449;
+}
+.gameType {
+    color: #62b6f0;
+}
+.btn {
+    text-align: center;
+    font-size: 1.4rem;
+    padding: 0.5rem 1.5rem;
+    line-height: 2rem;
+    border-radius: 0.5rem;
+    height: 3.1rem;
+    display: block;
+}
+.gameTypeListParent {
+    width: 100%;
+}
+.gameTypeList {
+    height: 3.8rem;
+    width: 1920px;
+    overflow: hidden;
+}
+.typeName {
+    width: 8rem;
+    text-align: center;
+    display: inline-block;
+    border-radius: 0.5rem;
+    line-height: 2.5rem;
+    margin: 0 0.5rem;
+    font-weight: bold;
+    font-weight: bold;
+    height: 2.5rem;
+}
+.typeName:first-child:after {
+    content: none
+}
+.typeName:after {
+    content: "";
+    width: 0.1rem;
+    float: left;
+    height: 1.5rem;
+    background: #e0e0e0;
+    margin-top: 0.5rem;
+}
+.testPlay {
+    border: 1px solid #62b6f0;
+    margin-bottom: 0.4rem;
+}
+.make {
+    color: #e75449;
+    border: 1px solid #e75449;
+    padding: 0.3rem 0;
+    line-height: 1.2rem;
+}
+.searchInput {
+    width: 100%;
+    height: 3rem;
+    border-radius: 0.5rem;
+    border: 1px solid #b3b3b3;
+}
+.searchButton,.searchInputClass {
+    display: inline-block;
+}
+.searchButton img {
+    width: 60%;
+}
+.searchButton button {
+    border: 1px solid #b3b3b3;
+    border-radius: 0.5rem;
+    width: 5rem;
+    position: absolute;
+    left: -3rem;
+    background-color: #fff;
+    height: 3rem;
+}
+.swiper-container {
+    width: 100%;
+    height: 2.8rem;
+}
+.mgud {
+    margin: 1rem auto;
+    margin-bottom: 0;
+}
+.typeListCheck {
+    color: red;
+    border-bottom: 3px solid red;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.tpl {
+    display: none;
+}
+
+.footer_nav {
+    height: 5rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #F0F0F0;
+    border-top: 1px solid #B3B1B2;
+    z-index: 1000;
+}
+.footer_nav dl dt {
+    text-align: center;
+}
+.footer_nav dl dd {
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    color: #7D7A7F;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 0;
+}

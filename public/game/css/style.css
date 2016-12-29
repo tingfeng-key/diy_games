@@ -1,0 +1,25 @@
+* {
+
+}
+html {
+
+}
+body {
+
+}
+li {
+    list-style: none;
+}
+.am-btn {
+    margin-bottom: 5px;
+}
+.test-foot {
+    z-index: 99999;
+    background-color: #FFFFF;
+    background-color: #fff;
+    border: 8px solid #e0e0e0;
+    text-align: center;
+    display: inline-block;
+    border-radius: 100%;
+    /* border-width: 1px; */
+}

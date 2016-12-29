@@ -1,0 +1,113 @@
+{extend name="Common:layout" /}
+{block name="css"}
+<link rel="stylesheet" href="__CSS__/tableList.css">
+{/block}
+{block name="body"}
+<div class="wrap_layout">
+    <div class="nav">
+        <div class="left">
+            <button class="layui-btn layui-btn-mini" title="添加" onclick="parent.add(this);">
+                <i class="layui-icon">&#xe627;</i>
+            </button>
+            <button class="layui-btn layui-btn-mini">
+                <i class="layui-icon">&#xe642;</i>
+            </button>
+            <button class="layui-btn layui-btn-mini">
+                <i class="layui-icon">&#xe66a;</i>
+            </button>
+        </div>
+        <div class="right">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="name" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="tableListId"></div>
+    <div class="pages">
+        <div class="left">
+        </div>
+        <div class="right">
+            <div id="page"></div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="footJs"}
+<script src="__JS__/tableList.js"></script>
+<script>
+$(function(){
+    layui.use(['form'], function(){
+        var form = layui.form();
+    });
+    $('.tableListId').list.init({
+        select: '.tableListId',
+        searchForm: '.layui-form',
+        pageSelect: '#page',
+        colums: [
+            {
+                text: '<input type="checkbox" name="id" />ID',
+                class: 'tableId',
+                field: 'id',
+                deal: function(e){
+                    return '<input type="checkbox" name="id" />'+ e.id;
+                },
+            },
+            {
+                text: '游戏名称',
+                field: 'name',
+            },
+            {
+                text: '游戏类型',
+                field: 'type_name',
+            },
+            {
+                text: '状态',
+                field: 'status_name',
+            },
+            {
+                text: '排序',
+                field: 'sort',
+            },
+            {
+                text: '发布时间',
+                field: 'create_time',
+            },
+            {
+                text: '更新时间',
+                field: 'update_time',
+            },
+            {
+                text: '操作',
+                style: 'width:300px',
+                field: 'id',
+                deal: function(e){
+                    return '<button class="layui-btn layui-btn-small layui-btn-normal" onclick="parent.add(this,'+ e.id+')">编辑</button>' +
+                            /*'<button class="layui-btn layui-btn-small layui-btn-danger" onclick="tplSet(this,'+ e.id+')">参数设置</button>' +*/
+                            '<button class="layui-btn layui-btn-small layui-btn-normal" onclick="useInfo(this,'+ e.id+')">用户信息</button>' +
+                            '<button class="layui-btn layui-btn-small layui-btn-danger" onclick="parent.del('+ e.id+')">删除</button>';
+                },
+            },
+        ],
+    });
+});
+function tplSet(obj,id){
+    var title = parent.getTitle(obj);
+    var url = parent.getControllerUrl()+'/tplSet/id/'+id;
+    parent.add_tab(url, title);
+    parent.add_iframe(url);
+    parent.switch_iframe(url);
+}
+function useInfo(obj,id){
+    var title = parent.getTitle(obj);
+    var url = parent.getControllerUrl()+'/userInfo/id/'+id;
+    parent.add_tab(url, title);
+    parent.add_iframe(url);
+    parent.switch_iframe(url);
+}
+</script>
+{/block}

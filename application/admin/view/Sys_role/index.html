@@ -1,0 +1,71 @@
+{extend name="Common:layout" /}
+{block name="css"}
+<link rel="stylesheet" href="__CSS__/tableList.css">
+{/block}
+{block name="body"}
+<div class="wrap_layout">
+    <div class="nav">
+        <div class="left">
+            <button class="layui-btn layui-btn-mini" title="添加角色" onclick="parent.add(this);">
+                <i class="layui-icon">&#xe627;</i>
+            </button>
+            <button class="layui-btn layui-btn-mini">
+                <i class="layui-icon">&#xe642;</i>
+            </button>
+            <button class="layui-btn layui-btn-mini">
+                <i class="layui-icon">&#xe66a;</i>
+            </button>
+        </div>
+    </div>
+    <div class="tableListId"></div>
+    <div class="pages">
+        <div class="left">
+        </div>
+        <div class="right">
+            <div id="page"></div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="footJs"}
+<script src="__JS__/tableList.js"></script>
+<script>
+    $(function(){
+        layui.use(['form'], function(){
+            var form = layui.form();
+            //各种基于事件的操作，下面会有进一步介绍
+        });
+        $('.tableListId').list.init({
+            select: '.tableListId',
+            searchForm: '.layui-form',
+            pageSelect: '#page',
+            colums: [
+                {
+                    text: '<input type="checkbox" name="id" />ID',
+                    class: 'tableId',
+                    style: 'width:30px',
+                    field: 'id',
+                },
+                {
+                    text: '模型名称',
+                    field: 'name',
+                },
+                {
+                    text: '状态',
+                    field: 'status',
+                },
+                {
+                    text: '操作',
+                    style: 'width:200px',
+                    field: 'id',
+                    deal: function(e){
+                        return '<button class="layui-btn layui-btn-small layui-btn-normal" onclick="parent.add(this,'+ e.id+')">编辑</button>' +
+                                '<button class="layui-btn layui-btn-small layui-btn-warm">所属用户</button>' +
+                                '<button class="layui-btn layui-btn-small layui-btn-danger">删除</button>';
+                    },
+                },
+            ],
+        });
+    });
+</script>
+{/block}

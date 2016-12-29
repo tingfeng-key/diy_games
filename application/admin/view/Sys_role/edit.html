@@ -1,0 +1,43 @@
+{extend name="Common:layout" /}
+{block name="body"}
+<blockquote class="layui-elem-quote">编辑</blockquote>
+<form class="layui-form" onsubmit="return parent.submitData(this, {:empty(input('param.id'))?0:input('param.id')})">
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-inline">
+            <input type="text" value="{$data->name|default=''}" name="name" required
+                   lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">节点</label>
+        <div class="layui-input-inline">
+            <select name="" multiple="multiple">
+                {$options}
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="status" lay-skin="switch" {if condition="isset($data) && ($data->status == 1)"}
+                   checked{/if}>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+{/block}
+{block name="footJs"}
+<script>
+$(function() {
+    layui.use(['form', 'layer'], function () {
+        var form = layui.form();
+    });
+});
+</script>
+{/block}

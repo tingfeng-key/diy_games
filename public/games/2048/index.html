@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="full-screen" content="no" />
+    <link rel="stylesheet" href="css/amazeui-grid.min.css" />
+    <link rel="stylesheet" href="css/layui.css" />
+    <title>2048</title>
+</head>
+<body>
+<section class="am-container">
+    <section class="am-vertical-align" style="height:600px">
+        <section class="am-vertical-align-middle">
+            <section id="headTitle" class="am-margin-sm">
+                <section class="am-g">
+                    <section class="am-u-sm-6" id="head_text">2048</section>
+                    <section class="paddingRight am-u-sm-6">
+                        <sction class="am-g" id="scoreClass">
+                            <section class="am-u-sm-6 now">
+                                <section>SCORE</section>
+                                <section id="score">0</section>
+                            </section>
+                            <section class="am-u-sm-6 total">
+                                <section>BEST</section>
+                                <section id="bestScore">0</section>
+                            </section>
+                        </sction>
+                    </section>
+                </section>
+                <section class="am-g subTitle-newGame">
+                    <section class="am-u-sm-6 subTitle">将相同的数字融合相加，争取获得更高的分数！</section>
+                    <section class="paddingRight am-u-sm-6">
+                        <button class="newGame" onclick="newgame();">开始游戏</button>
+                    </section>
+                </section>
+            </section>
+            <section id="grid-container"></section>
+    </section>
+</section>
+</section>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+    var rewardArr = [],
+        rewardArrLength = 0,
+        dbData = [];
+
+    var Request = new Object();
+    Request = GetRequest();
+    var getGameConfig = "/diy_games/public/getGameConfig/"+ Request.id;
+    var dataId = Request.id;
+    $(function(){
+        $('head').append('<link rel="stylesheet" type="text/css" href="css/2048.css" />');
+        $.getJSON(getGameConfig, function(res){
+            if(res.code){
+                var data = res.data;
+                rewardArr = JSON.parse(data.reward);
+                rewardArrLength = (rewardArr.length > 1)?(rewardArr.length-1):rewardArr.length;
+                dbData = data;
+                $('body').append('<script type="text/javascript" src="js/support2048.js"><\/script>');
+                var style = '<style>\
+                @font-face\
+                {\
+                    font-family: '+ data.font +';\
+                    src: url("font/'+ data.font +'.ttf"),\
+                        url("font/'+ data.font +'.ttf"); /* IE9+ */\
+                    font-weight:bold;\
+                }\
+            * {\
+                    font-family: '+ data.font +';\
+                }\
+                <\/style>';
+                $('head').append(style);
+            }else{
+                console.log();
+            }
+        });
+    });
+
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+</script>
+<script type="text/javascript" src="js/data.js"></script>
+<!---->
+</body>
+</html>

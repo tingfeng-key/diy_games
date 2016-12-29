@@ -1,0 +1,48 @@
+{extend name="Common:layout" /}
+{block name="body"}
+<blockquote class="layui-elem-quote">编辑</blockquote>
+<form class="layui-form">
+  <div class="layui-form-item">
+    <label class="layui-form-label">模型名称</label>
+    <div class="layui-input-inline">
+      <input type="text" value="{$data.name|default=''}" name="name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">模型别名</label>
+    <div class="layui-input-inline">
+      <input type="text" value="{$data.table_name|default=''}" name="table_name" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">模型状态</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="status" lay-skin="switch">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">排序</label>
+    <div class="layui-input-inline">
+      <input type="number" value="{$data.table_name|default='0'}" name="sort" required lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">值越小越靠前</div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+{/block}
+{block name="footJs"}
+<script type="text/javascript">
+$(function(){
+    layui.use(['form','laypage'], function(){
+        var form = layui.form();
+        //各种基于事件的操作，下面会有进一步介绍
+    });
+});
+</script>
+{/block}

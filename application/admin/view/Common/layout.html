@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=240,
+            height=320,
+            user-scalable=no,
+            initial-scale=1.0,
+            maximum-scale=1.0,
+            minimun-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content=''{block name="description"}{/block}'>
+    <meta name="keywords" content= '{block name="keywords"}{/block}'>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    {block name="meta"}{/block}
+    <title>
+        {block name="title"}{/block} - {后台管理}
+    </title>
+    <link rel="icon" type="image/png" href="__ROOT__favicon.png">
+    <link rel="stylesheet" href="__CSS__/layui.css">
+    <link rel="stylesheet" href="__CSS__/app.css">
+    {block name="css"}{/block}
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="_COM_JS_/jquery.min.js"></script>
+    <!--<![endif]-->
+    {block name="headJs"}{/block}
+</head>
+<body data-type="index">
+{block name="headHtml"}{/block}
+{block name="body"}{/block}
+<script src="__JS__/../layui.js"></script>
+<!--<script src="__JS__bootstrap.min.js"></script>-->
+{block name="footJs"}{/block}
+{block name="footHtml"}{/block}
+</body>
+</html>

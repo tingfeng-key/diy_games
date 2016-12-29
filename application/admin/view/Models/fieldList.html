@@ -1,0 +1,85 @@
+{extend name="Common:layout" /}
+{block name="css"}
+<link rel="stylesheet" href="__CSS__/tableList.css">
+{/block}
+{block name="body"}
+<div class="wrap_layout">
+    <div class="nav">
+        <div class="left">
+            <button class="layui-btn layui-btn-mini" onclick="parent.add();">
+                <i class="layui-icon">&#xe627;</i>
+            </button>
+            <button class="layui-btn layui-btn-mini">
+                <i class="layui-icon">&#xe642;</i>
+            </button>
+            <button class="layui-btn layui-btn-mini">
+                <i class="layui-icon">&#xe66a;</i>
+            </button>
+        </div>
+        <div class="right">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="name" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <select name="id">
+                            <option value="">请选择一个城市</option>
+                            <option value="010">北京</option>
+                            <option value="021">上海</option>
+                            <option value="0571">杭州</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="tableListId"></div>
+    <div class="pages">
+        <div class="left">
+        </div>
+        <div class="right">
+            <div id="page"></div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="footJs"}
+<script src="__JS__/tableList.js"></script>
+<script>
+    $(function(){
+        layui.use(['form'], function(){
+            var form = layui.form();
+            //各种基于事件的操作，下面会有进一步介绍
+        });
+        $('.tableListId').list.init({
+            select: '.tableListId',
+            searchForm: '.layui-form',
+            pageSelect: '#page',
+            colums: [{
+                text: '<input type="checkbox" name="id" />ID',
+                class: 'tableId',
+                field: 'id',
+            },
+                {
+                    text: '模型名称',
+                    field: 'name',
+                },
+                {
+                    text: '操作',
+                    style: 'width:200px',
+                    field: 'id',
+                    deal: function(e){
+                        return '<button class="layui-btn layui-btn-small layui-btn-normal">编辑</button>' +
+                                '<button class="layui-btn layui-btn-small layui-btn-warm">字段管理</button>' +
+                                '<button class="layui-btn layui-btn-small layui-btn-danger">删除</button>';
+                    },
+                },
+            ],
+        });
+    });
+</script>
+{/block}

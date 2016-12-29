@@ -1,0 +1,76 @@
+{extend name="Common:layout" /}
+{block name="css"}
+<link rel="stylesheet" href="__CSS__/tableList.css">
+{/block}
+{block name="body"}
+<div class="wrap_layout">
+    <div class="nav">
+        <div class="right">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" name="name" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="tableListId"></div>
+    <div class="pages">
+        <div class="left">
+        </div>
+        <div class="right">
+            <div id="page"></div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="footJs"}
+<script src="__JS__/tableList.js"></script>
+<script>
+$(function(){
+    layui.use(['form'], function(){
+        var form = layui.form();
+    });
+    $('.tableListId').list.init({
+        select: '.tableListId',
+        searchForm: '.layui-form',
+        pageSelect: '#page',
+        colums: [
+            {
+                text: '<input type="checkbox" name="id" />ID',
+                class: 'tableId',
+                field: 'id',
+                deal: function(e){
+                    return '<input type="checkbox" name="id" />'+ e.id;
+                },
+            },
+            {
+                text: '用户的游戏',
+                field: 'name',
+            },
+            {
+                text: '用户昵称',
+                field: 'member_name',
+            },
+            {
+                text: '游戏',
+                field: 'game_name',
+            },
+            {
+                text: '点击数',
+                field: 'hit_number',
+            },
+            {
+                text: '玩家来源统计',
+                field: 'player',
+                deal: function(e){
+                    return 'QQ：'+ e.qq_number+','+'微信：'+ e.weixin_number+'，'+'其他：'+e.other_number;
+                }
+            },
+        ],
+    });
+});
+</script>
+{/block}

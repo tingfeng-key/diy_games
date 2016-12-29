@@ -1,0 +1,33 @@
+{extend name="Common:layout" /}
+{block name="title"}后台登录{/block}
+{block name="body"}
+<fieldset class="layui-elem-field loginPanel">
+    <legend>登录管理系统</legend>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" id="user-name" required  lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码框</label>
+            <div class="layui-input-inline">
+                <input type="password"  name="password" id="user-name" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"> </label>
+            <div class="layui-input-inline">
+                <button class="layui-btn">登录</button>
+            </div>
+        </div>
+    </form>
+</fieldset>
+{/block}
+{block name="footJs"}
+<script>
+    var checkLoginUrl = '{:Url("checkLogin")}';
+</script>
+<script src="__JS__/login.js"></script>
+{/block}
